@@ -51,8 +51,9 @@ EOF
 
 list_working_days () {
 	local mm=$MONTH
-	#cal -N -h $mm $YEAR | grep -vE "^Sa|^Su|^ |^$" | sed "s/[[:alpha:]]//g" | fmt -w 1 | sort -n
-	ncal -M $mm $YEAR  |sed -n '2,6p'| grep -vE "^Sa|^Su|^ |^$" | sed "s/[[:alpha:]]//g" | fmt -w 1|sort -n
+	#cal -NM -h $mm $YEAR | grep -vE "^Sa|^Su|^ |^$" | sed "s/[[:alpha:]]//g" | fmt -w 1 | sort -n
+	cal -NM -h 8 2018 | sed -n '2,6p'|sed "s/[[:alpha:]]//g" | fmt -w 1 | sort -n
+	#ncal -M $mm $YEAR  |sed -n '2,6p'| sed "s/[[:alpha:]]//g" | fmt -w 1|sort -n
 }
 
 fmt_month () {
@@ -78,6 +79,7 @@ gen_timesheet_hdr () {
 gen_timesheet_data () {
 	local i=0
 	wd_list=`list_working_days`
+	#echo $wd_list > ./test.log
 	local lastwd=`echo $(list_working_days) | awk '{print $NF}'`
 
 	echo -ne "${project_name},${task_name},${task_item},${bu},"
