@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 
 # No need to modify
 MONTH=`echo $1 |  sed -e 's/[^[:digit:]]//g'`
@@ -10,7 +10,7 @@ exe_bin="csv2xlsx.bin"
 YEAR=`date +%Y`
 
 # Change for your timesheet
-project_name="WLRGFM-100"
+project_name="WAPS-232N"
 task_name=""
 task_item="development"
 bu="SD5"
@@ -51,7 +51,8 @@ EOF
 
 list_working_days () {
 	local mm=$MONTH
-	cal -N -h $mm $YEAR | grep -vE "^Sa|^Su|^ |^$" | sed "s/[[:alpha:]]//g" | fmt -w 1 | sort -n
+	#cal -N -h $mm $YEAR | grep -vE "^Sa|^Su|^ |^$" | sed "s/[[:alpha:]]//g" | fmt -w 1 | sort -n
+	ncal -M $mm $YEAR  |sed -n '2,6p'| grep -vE "^Sa|^Su|^ |^$" | sed "s/[[:alpha:]]//g" | fmt -w 1|sort -n
 }
 
 fmt_month () {
@@ -83,7 +84,7 @@ gen_timesheet_data () {
 
 	for h in `seq 1 31`; do
 		for d in $wd_list; do
-			if [ $h -eq $d ]; then
+			if [ "$h" =  "$d" ]; then
 				#echo -n "$d"
 				echo -n "8"
 			else
