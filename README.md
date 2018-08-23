@@ -2,15 +2,20 @@
 
 License: [Beerware](https://zh.wikipedia.org/wiki/%E5%95%A4%E9%85%92%E8%BB%9F%E9%AB%94)
 
+####This script is from https://github.com/andrewintw/kekeke-timesheet
+####And I made some different due to my Ubuntu setting.
+
 ## HOW TO USE
 
 1. clone the utils
 
-		git clone https://github.com/andrewintw/kekeke-timesheet.git
+		git clone https://github.com/AManTw/kekeke-timesheet.git
 		cd kekeke-timesheet/
 
 2. syntax
-
+		
+		1)Editting the project_name, bu, task_item to yours
+		2)
 		$ ./gen_timesheet2.sh [the month you want]
 		ex: $ ./gen_timesheet2.sh 4    # use April
 		ex: $ ./gen_timesheet2.sh      # use current month
